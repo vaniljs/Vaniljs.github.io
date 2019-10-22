@@ -1,0 +1,70 @@
+<meta charset="UTF-8">
+
+<div class="form-multipage">
+    <div class="slide">
+        <p class="title">Страница 1</p>
+        <div>
+            <input type="checkbox">
+        </div>
+        <div>
+            <input type="checkbox">
+        </div>
+        <div>
+            <input type="checkbox">
+        </div>
+        <div>
+            <input type="checkbox">
+        </div>
+        <div>
+            <input type="checkbox">
+        </div>
+        <a href="#">Далее</a>
+    </div>
+    <div class="slide">
+        <p class="title">Страница 2</p>
+        <a href="#">Далее</a>
+    </div>
+    <div class="slide">
+        <p class="title">Страница 3</p>
+        <a href="#">Далее</a>
+    </div>
+    <div class="slide">
+        <p class="title">Страница 4</p>
+        <a href="#">Конец</a>
+    </div>
+</div>
+
+<script>
+    var checkbox = document.querySelectorAll('form input'),
+    arrayCheckbox = Array.from(document.getElementsByTagName("input")),
+    formAllSlides = document.querySelectorAll('.slide');
+
+    window.onload = document.querySelector('.slide').style.display = 'block';
+
+    formAllSlides.forEach((item) => {
+        let linkNext = item.querySelector('.slide .title');
+
+        console.log(linkNext);
+    });
+
+    checkbox.forEach((item) => {
+        item.addEventListener('click', () => {
+            let statusSpan = document.createElement('span');
+
+            if (item.checked) {
+                statusSpan.innerHTML = 'Check?';
+                item.parentNode.append(statusSpan);
+                item.nextElementSibling.innerHTML = 'Checked!';
+                item.nextElementSibling.style.color = 'green';
+            } else {
+                item.parentNode.lastChild.remove();
+            }
+            arrayCheckbox.every(isPositive) ? alert('All Checked!!!') : false;
+        })
+    });
+
+    function isPositive(items) {
+        return items.checked;
+    }
+
+</script>
