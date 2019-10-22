@@ -29,20 +29,20 @@ a:visited {
 
 /*Main menu*/
 
-.main-menu {
+.left-menu {
     text-align: left;
 }
 
-.main-menu ul {
+.left-menu ul {
     list-style: none;
     padding-left: 20px;
     line-height: 2.5rem;
 }
-.main-menu ul a {
+.left-menu ul a {
     text-decoration: none;
     position: relative;
 }
-.main-menu li a::after {
+.left-menu li a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -51,10 +51,10 @@ a:visited {
     background-color: #000;
     display block;
 }
-.main-menu a:hover {
+.left-menu a:hover {
     font-weight: bold !important;
 }
-.main-menu a:hover::after {
+.left-menu li:not(.active) a:hover::after {
     animation: menu-line .5s;
     animation-fill-mode: forwards
 }
@@ -62,5 +62,24 @@ a:visited {
     from {width: 0;}
     to {width: 100%;}
 }
+.left-menu .active {
+    font-weight: bold;
+}
+.left-menu .active a::after {
+    width: 100%;
+}
+
+/* Form page */
+
+.form-multipage {
+    position: relative;
+}
+.form-multipage .slide {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
 
+/* form page */
