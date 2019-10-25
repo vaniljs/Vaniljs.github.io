@@ -1,70 +1,95 @@
-<meta charset="UTF-8">
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="row">
+    <div class="left-menu col-3">
+        <a href="index.html"><h1>Vaniljs</h1></a>
+        <ul>
+            <li><a href="slider.html">slider</a></li>
+            <li class="active"><a href="form.html">form</a></li>
+            <li><a href="animate.html">animate</a></li>
+        </ul>
+    </div>
+    <div class="content col-9">
+        <div class="form-multipage">
+            <div class="slide">
+                <p class="title">Страница 1</p>
+                <p>Выберите CMS систему:</p>
+                <div class="cms">
+                    <div data-name="1c-Битрикс">
+                        <img src="media/bitrix.png">
+                    </div>
+                    <div  data-name="Magento">
+                        <img src="media/magento.png">
+                    </div>
+                    <div data-name="OpenCart">
+                        <img src="media/oc.png">
+                    </div>
+                    <div data-name="WordPress">
+                        <img src="media/wp.png">
+                    </div>
+                    <input type="hidden" name="cms">
+                </div>
+        
+                <select class="type-site">
+                    <option selected>Выберите тип</option>
+                    <option value="100">Landing Page</option>
+                    <option value="200">Корпоративный сайт</option>
+                    <option value="300">Онлайн магазин</option>
+                </select>
+                <a href="#">Далее</a>
+            </div>
+        
+           <!-- <div class="slide">
+                <p class="title">Страница 2</p>
+                <a href="#">Далее</a>
+            </div>
+            <div class="slide">
+                <p class="title">Страница 3</p>
+                <a href="#">Далее</a>
+            </div>
+            <div class="slide">
+                <p class="title">Страница 4</p>
+                <a href="#">Конец</a>
+            </div>-->
+        </div>
+        
+        <script>
+            var checkImage = qq('.cms div'),
+                    cmsInput = q('input[name="cms"]');
 
-<div class="form-multipage">
-    <div class="slide">
-        <p class="title">Страница 1</p>
-        <div>
-            <input type="checkbox">
-        </div>
-        <div>
-            <input type="checkbox">
-        </div>
-        <div>
-            <input type="checkbox">
-        </div>
-        <div>
-            <input type="checkbox">
-        </div>
-        <div>
-            <input type="checkbox">
-        </div>
-        <a href="#">Далее</a>
-    </div>
-    <div class="slide">
-        <p class="title">Страница 2</p>
-        <a href="#">Далее</a>
-    </div>
-    <div class="slide">
-        <p class="title">Страница 3</p>
-        <a href="#">Далее</a>
-    </div>
-    <div class="slide">
-        <p class="title">Страница 4</p>
-        <a href="#">Конец</a>
+            checkImage.forEach( (item) => {
+                item.addEventListener('click', () => {
+                    checkImage.forEach((item) => {
+                        item.classList.remove('checked');
+                    });
+                    item.classList.add('checked');
+                    cmsInput.value = item.getAttribute('data-name');
+                });
+            });
+
+            function q(selector) {
+                return document.querySelector(selector);
+            }
+            function qq(selectors) {
+                return document.querySelectorAll(selectors);
+            }
+
+
+        </script>
     </div>
 </div>
+</div>
 
-<script>
-    var checkbox = document.querySelectorAll('form input'),
-    arrayCheckbox = Array.from(document.getElementsByTagName("input")),
-    formAllSlides = document.querySelectorAll('.slide');
-
-    window.onload = document.querySelector('.slide').style.display = 'block';
-
-    formAllSlides.forEach((item) => {
-        let linkNext = item.querySelector('.slide .title');
-
-        console.log(linkNext);
-    });
-
-    checkbox.forEach((item) => {
-        item.addEventListener('click', () => {
-            let statusSpan = document.createElement('span');
-
-            if (item.checked) {
-                statusSpan.innerHTML = 'Check?';
-                item.parentNode.append(statusSpan);
-                item.nextElementSibling.innerHTML = 'Checked!';
-                item.nextElementSibling.style.color = 'green';
-            } else {
-                item.parentNode.lastChild.remove();
-            }
-            arrayCheckbox.every(isPositive) ? alert('All Checked!!!') : false;
-        })
-    });
-
-    function isPositive(items) {
-        return items.checked;
-    }
-
-</script>
+<script src="script.js"></script>
+</body>
+</html>
