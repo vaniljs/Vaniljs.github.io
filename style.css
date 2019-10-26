@@ -133,6 +133,31 @@ a:visited {
     filter: grayscale(0);
 }
 
+.custom-select {
+    margin-bottom: 30px;
+}
 
+.select-result {
+    display: block;
+    width: 250px;
+    height: 40px;
+    overflow: hidden;
+
+}
+
+.select-active {
+    height: 100%;
+}
+
+.select-result div {
+    margin-bottom: -1px;
+    padding: 10px;
+    border: 1px solid rgb(212, 212, 212);
+}
+
+.select-result div:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
 
 /* form page */

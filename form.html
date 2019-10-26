@@ -39,13 +39,29 @@
                     </div>
                     <input type="hidden" name="cms">
                 </div>
-        
-                <select class="type-site">
+
+                <select class="custom-select">
                     <option selected>Выберите тип</option>
                     <option value="100">Landing Page</option>
                     <option value="200">Корпоративный сайт</option>
                     <option value="300">Онлайн магазин</option>
                 </select>
+
+                <div class="select-result"></div>
+
+                <script>
+
+
+
+                    function q(selector) {
+                        return document.querySelector(selector)
+                    }
+
+                    function qq(selectors) {
+                        return document.querySelectorAll(selectors)
+                    }
+                </script>
+
                 <a href="#">Далее</a>
             </div>
         
@@ -76,6 +92,39 @@
                     cmsInput.value = item.getAttribute('data-name');
                 });
             });
+
+            /* Select */
+
+            var option = qq('.custom-select option'),
+                selectResult = q('.select-result');
+
+            option.forEach((item) => {
+                let div = document.createElement('div');
+                div.innerHTML = item.innerHTML;
+                selectResult.appendChild(div);
+            });
+            qq('.select-result div').forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    if (selectResult.classList.contains('select-active')) {
+                        q('.select-result div').innerHTML = e.target.innerHTML;
+                        selectResult.classList.remove('select-active');
+                        option.forEach((item) => {
+                            item.innerHTML === e.target.innerHTML ? item.selected = true : false;
+                        });
+                    } else {
+                        selectResult.classList.add('select-active');
+                    }
+                });
+            });
+
+            /*todo Не работает при клике на кроме body*/
+            document.body.addEventListener('click', (e) => {
+                if ( !e.target.parentNode.classList.contains('select-result') && q('.select-active')) {
+                    selectResult.classList.remove('select-active');
+                }
+            });
+
+            /* select */
 
             function q(selector) {
                 return document.querySelector(selector);

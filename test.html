@@ -1,23 +1,81 @@
-<input type="text" name="catlist[]">
+<meta charset="utf8">
 
-<select class="custom-select custom-select-lg mb-3">
-    <option selected>  www</option>
-    <option value="11">One</option>
-    <option value="12">Two</option>
-    <option value="13">Three</option>
+<style>
+    .custom-select {
+        margin-bottom: 30px;
+    }
+
+    .select-result {
+        display: block;
+        width: 150px;
+        height: 40px;
+        overflow: hidden;
+    }
+
+    .select-active {
+        height: 100%;
+    }
+
+    .select-result div {
+        margin-bottom: -1px;
+        padding: 10px;
+        border: 1px solid rgb(212, 212, 212);
+    }
+
+    .select-result div:hover {
+        cursor: pointer;
+        background-color: rgb(230, 230, 230);
+    }
+</style>
+
+
+<select class="custom-select">
+    <option selected>Выберите</option>
+    <option>One</option>
+    <option>Two</option>
+    <option>Three</option>
 </select>
 
+<div class="select-result"></div>
+
 <script>
-    var select = document.querySelector('.custom-select'),
-        input = document.querySelector('input[name="catlist[]"]');
-    select.addEventListener('change', function (e) {
-        let valueOption =  e.target.options[e.target.selectedIndex].value;
-        if (valueOption === '11' || valueOption === '13') {  // Через || перечислите, какие value не нужны
-            input.value = 'Ошибка'
-        } else {
-            input.value = e.target.options[e.target.selectedIndex].value
+    var option = qq('.custom-select option'),
+        selectResult = q('.select-result');
+
+    option.forEach((item) => {
+        let div = document.createElement('div');
+        div.innerHTML = item.innerHTML;
+        selectResult.appendChild(div);
+    });
+    qq('.select-result div').forEach((item) => {
+       item.addEventListener('click', (e) => {
+           if (selectResult.classList.contains('select-active')) {
+               q('.select-result div').innerHTML = e.target.innerHTML;
+               selectResult.classList.remove('select-active');
+               option.forEach((item) => {
+                   item.innerHTML === e.target.innerHTML ? item.selected = true : false;
+               });
+           } else {
+               selectResult.classList.add('select-active');
+           }
+       });
+    });
+
+
+    document.body.addEventListener('click', (e) => {
+        if ( !e.target.parentNode.classList.contains('select-result') && q('.select-active')) {
+            selectResult.classList.remove('select-active');
         }
     });
+
+
+    function q(selector) {
+        return document.querySelector(selector)
+    }
+
+    function qq(selectors) {
+        return document.querySelectorAll(selectors)
+    }
 </script>
 
 

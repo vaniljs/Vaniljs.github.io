@@ -6,7 +6,7 @@ function qq(selectors) {
 }
 
 // Slider
-
+/*todo сделать опции бесконечность и анимацию, починить деактивацию кнопок на последних слайдах*/
 var vanilSlider = qq('.vanil-slider'),
 vanilNavs = {
     prev: 'Prev',
@@ -27,16 +27,17 @@ vanilSlider.forEach((slider) => {
 
         createPrevSlide.addEventListener('click', () => {
             if (slide.previousElementSibling) {
-                createPrevSlide.classList.remove('disable');
+                //createPrevSlide.classList.remove('disable');
                 slide.classList.remove('active');
                 slide.previousElementSibling.classList.add('active')
             } else {
-                createPrevSlide.classList.add('disable')
+                slide.previousElementSibling.classList.remove('active')
+                slide.lastElementChild.classList.add('active')
             }
         });
         createNextSlide.addEventListener('click', () => {
             if (slide.nextElementSibling) {
-                createNextSlide.classList.remove('disable');
+                //createNextSlide.classList.remove('disable');
             slide.classList.remove('active');
             slide.nextElementSibling.classList.add('active')
             } else {
@@ -80,6 +81,8 @@ function getContent() {
 
 
 // reinitial xhr <script>
+
+/*todo удалить нерабочий <script>*/
 function evalScripts(el) {
     var $scripts = el.querySelectorAll('script');
     for (var i = 0; i < $scripts.length; i++) {
