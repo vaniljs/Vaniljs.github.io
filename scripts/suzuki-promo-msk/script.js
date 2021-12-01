@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
 function formatPhone(e) {
     var replacedPhone = e.split("");
     replacedPhone.splice(0, "", "+7 (495) ");
-    replacedPhone.splice(3, "", "-");
-    replacedPhone.splice(6, "", "-");
+    replacedPhone.splice(4, "", "-");
+    replacedPhone.splice(7, "", "-");
     return replacedPhone.join("");
 }
